@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1 id="heading">Todos</h1>
+    <form onsubmit="handleSubmit(event)">
+      <input required id="title" placeholder="title" value="" type="text" />
+      <input type="text" placeholder="status" />
+      <button>create</button>
+    </form>
+    <ul id="todos-list">
+      <!-- empty -->
+      <li>react-false</li>
+    </ul>
+    <script>
+      let todos = [];
+      let stringifiedTodos = localStorage.getItem("todos"); // '["html","css"]'
+      let parsedTodos = JSON.parse(stringifiedTodos); // ["html","css"]
+
+      // if (parsedTodos) { // in very first setup ,parsedTodos is null
+      //   todos = parsedTodos;
+      // }
+
+      todos = parsedTodos || [];
+
+      converTodosToList();
+
+      function converTodosToList() {
+        let outputString = "";
+
+        todos.forEach((element) => {
+          outputString = outputString + `<li>${element}</li>`;
+        });
+        document.getElementById("todos-list").innerHTML = outputString;
+
+        localStorage.setItem("todos", JSON.stringify(todos));
+      }
+
+      function handleSubmit(event) {
+        event.preventDefault();
+        let inputValue = document.getElementById("title").value; // express
+        todos.push(inputValue);
+
+        converTodosToList(); // [html,css] to <li>html</li><li>css</li>
+      }
+    </script>
+  </body>
+</html>
+
+<!-- 
+
+function handleSubmit(event) {
+        event.preventDefault(); // prevent page refresh
+        let inputValue = document.getElementById("title").value; // express
+        console.log(`add ${inputValue} `);
+
+        let newLi = document.createElement("li"); // <li> </li>
+        newLi.innerText = inputValue; //<li>ourInputValue</li>
+
+        document.getElementById("todos-list").appendChild(newLi);
+
+        document.getElementById("title").value = "";
+      }
+
+ -->

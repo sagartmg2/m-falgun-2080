@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>count: <span id="countValue">0</span></h1>
+    <button onclick="increment()">increment</button>
+    <button onclick="decrement()">decrement</button>
+    <script>
+
+      let countValue = localStorage.getItem("countValue") || 0;
+
+      function updateValue() {
+        document.getElementById("countValue").innerText = countValue;
+        localStorage.setItem("countValue", countValue);
+      }
+
+      updateValue();
+
+      function increment() {
+        // countValue = countValue + 1
+        countValue++;
+        updateValue();
+      }
+      
+      function decrement() {
+        countValue--;
+        updateValue();
+      }
+    </script>
+  </body>
+</html>
