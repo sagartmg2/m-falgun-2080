@@ -4,18 +4,68 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <style>
+
+      /* 
+        selector{
+            css-proeprty: css-value;
+            css-proeprty: css-value;
+            css-proeprty: css-value;
+
+        } 
+
+        selector
+          - tag
+          - id
+          - class
+
+      */
+      h1{
+        color:red;
+        text-align: center;
+      }
+
+      /* header li{
+        display: inline;
+      } */
+      header ul{
+        display: flex;
+        gap: 1rem;
+        list-style: none;
+        padding-left:0;
+      }
+
+
+      @media(){
+        
+      }
+
+    </style>
   </head>
   <body>
+    <header>
+      <ul>
+        <li><a href="./todos.html">todos</a></li>
+        <li><a href="./counter.html">counter</a></li>
+      </ul>
+    </header>
+
+
     <h1 id="heading">Todos</h1>
     <form onsubmit="handleSubmit(event)">
-      <input required id="title" placeholder="title" value="" type="text" />
-      <input type="text" placeholder="status" />
+      <input required id="title" name="title" placeholder="title" value="" type="text" />
+      <!-- <input type="text" id="status" placeholder="status" /> -->
+      <input type="checkbox" id="status" name="status" placeholder="status" />
       <button>create</button>
     </form>
     <ul id="todos-list">
       <!-- empty -->
       <li>react-false</li>
     </ul>
+
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos eligendi odit vitae, perspiciatis quo obcaecati! orem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos eligendi odit vitae, perspiciatis quo obcaecati! Vero iste minima nobis. Voluptatibus quia error ipsa corporis facilis quos repellendus commodi, blanditiis maioreorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos eligendi odit vitae, perspiciatis quo obcaecati! Vero iste minima nobis. Voluptatibus quia error ipsa corporis facilis quos repellendus commodi, blanditiis maioreVero iste minima nobis. Voluptatibus quia error ipsa corporis facilis quos repellendus commodi, blanditiis maiores.</p>
+    
+
     <script>
       let todos = [];
       let stringifiedTodos = localStorage.getItem("todos"); // '["html","css"]'
@@ -33,8 +83,9 @@
         let outputString = "";
 
         todos.forEach((element) => {
-          outputString = outputString + `<li>${element}</li>`;
+          outputString = outputString + `<li>${element.title} - ${element.status ? "✔" : "❌" }</li>`;
         });
+
         document.getElementById("todos-list").innerHTML = outputString;
 
         localStorage.setItem("todos", JSON.stringify(todos));
@@ -42,8 +93,21 @@
 
       function handleSubmit(event) {
         event.preventDefault();
-        let inputValue = document.getElementById("title").value; // express
-        todos.push(inputValue);
+
+        console.log(event.target);
+        console.log(event.target.title);
+        console.log(event.target.status);
+
+        // let inputValue = document.getElementById("title").value; // express
+        // let statusValue = document.getElementById("status").checked; // express
+
+        let inputValue = event.target.title.value; // express
+        let statusValue = event.target.status.checked; // express
+
+        todos.push({
+          title: inputValue,
+          status: statusValue,
+        });
 
         converTodosToList(); // [html,css] to <li>html</li><li>css</li>
       }
