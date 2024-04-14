@@ -20,10 +20,7 @@
           - class
 
       */
-      h1{
-        color:red;
-        text-align: center;
-      }
+     
 
       /* header li{
         display: inline;
@@ -34,11 +31,28 @@
         list-style: none;
         padding-left:0;
       }
-
-
-      @media(){
         
+      /* #heading{
+          text-align: right;
       }
+
+      .main-heading{
+        text-align: left;
+      } */
+
+      body h1{
+        text-align: right;
+      }
+      
+      h1{
+        color:red;
+        text-align: center;
+      }
+
+
+
+      
+     
 
     </style>
   </head>
@@ -51,7 +65,7 @@
     </header>
 
 
-    <h1 id="heading">Todos</h1>
+    <h1 class="main-heading" id="heading">Todos</h1>
     <form onsubmit="handleSubmit(event)">
       <input required id="title" name="title" placeholder="title" value="" type="text" />
       <!-- <input type="text" id="status" placeholder="status" /> -->
