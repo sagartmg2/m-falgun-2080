@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      /* interneal css */
+      /* reset css */
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        margin: 8px;
+      }
+
+      .selectors {
+        padding-left: 40px;
+      }
+
+      .box-modal {
+        border: 1px solid;
+        padding: 1rem;
+        margin-left: 3rem;
+      }
+
+      .my-8 {
+        margin-top: 2rem; /* //32 // 36px */
+        margin-bottom: 2rem;
+      }
+
+      .pl-10 {
+        padding-left: 40px;
+      }
+
+      header ul {
+        display: flex;
+        list-style: none;
+        gap: 1rem;
+      }
+
+      header .active {
+        color: red;
+      }
+
+      .capitalize {
+        text-transform: capitalize;
+      }
+
+      .projects {
+        display: flex;
+        gap: 1rem;
+      }
+
+      .project {
+        width: 25%;
+        height: 300px;
+        border: 1px solid black;
+        border-radius: 10px;
+        padding: 1rem;
+      }
+
+      /* calculate score/priority */
+
+      /*
+          .projects .active{
+              border: 1px solid red ;
+              transform: translate(10px,-10px);
+              box-shadow: 4px 0px 9px 0px red;
+            } 
+        */
+
+      .active.project {
+        border: 1px solid red;
+        transform: translate(10px, -10px);
+        box-shadow: 4px 0px 9px 0px red;
+      }
+
+      button.active {
+        background-color: red;
+        color: white;
+        padding: 8px 16px 8px 16px;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <ul>
+        <li>  <a class="active" href="#">home</a></li>
+        <li><a href="#">about us</a></li>
+        <li><a href="#">contact us</a></li>
+      </ul>
+    </header>
+    <h1>selector</h1>
+    <ul class="selectors">
+      <li><h2>id</h2></li>
+      <li><h2>class</h2></li>
+      <li><h2>tag</h2></li>
+      <li>
+        <h2>combined secltors</h2>
+        <ul class="pl-10">
+          <li>
+            <h3>descendent selector</h3>
+            <p>
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+              Corrupti, illum repellat praesentium assumenda odio beatae vero
+              nesciunt veniam mollitia non natus tempore autem impedit similique
+              nobis velit dolor iste neque!
+            </p>
+          </li>
+          <li>
+            <h2>and selecotr</h2>
+            <p>
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+              Praesentium labore, porro alias asperiores laborum ea natus
+              tenetur sit deleniti doloremque voluptatibus molestias
+              perspiciatis consequatur fugit! Blanditiis quo ea ducimus cum.
+            </p>
+          </li>
+          <li>or selecotr</li>
+        </ul>
+      </li>
+    </ul>
+
+    <p class="my-8">
+      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsum magnam
+      sapiente, sit obcaecati molestias a recusandae debitis ipsa amet nemo
+      numquam cumque aut veritatis cum quod maxime beatae, nam quae!
+    </p>
+
+    <ul class="pl-10">
+      <li>inline</li>
+      <li>inline-block</li>
+      <li>block</li>
+    </ul>
+
+    <div class="my-8">
+      <h2 class="capitalize">box modal</h2>
+      <p class="box-modal">
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Placeat
+        quisquam expedita quod nemo asperiores a, qui neque nihil,ectetur
+        adipisicing elit. Placeat quisquam expedita quod nemo asperiores a, qui
+        neque nihil,ectetur adipisicing elit. Placeat quisquam expedita quod
+        nemo asperiores a, qui neque nihil, debitis eius facilis fugiat esse
+        adipisci illum? Rem architecto ratione commodi dolorem?
+      </p>
+    </div>
+
+    <div class="projects">
+      <div class="active project capitalize" id="project-one">
+        <p>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quisquam
+          itaque nobis explicabo enim veniam sit molestiae temporibus, ad in
+          laboriosam eum nisi maiores id consequuntur ipsa excepturi quaerat,
+          voluptatem facere.
+        </p>
+        <button class="active">Enroll Now !</button>
+      </div>
+      <div class="project">
+        <p>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quisquam
+          itaque nobis explicabo enim veniam sit molestiae temporibus, ad in
+          laboriosam eum nisi maiores id consequuntur ipsa excepturi quaerat,
+          voluptatem facere.
+        </p>
+      </div>
+      <div class="project">
+        <p>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quisquam
+          itaque nobis explicabo enim veniam sit molestiae temporibus, ad in
+          laboriosam eum nisi maiores id consequuntur ipsa excepturi quaerat,
+          voluptatem facere.
+        </p>
+      </div>
+    </div>
+  </body>
+</html>
