@@ -20,6 +20,9 @@
       }
       /* end-reset css */
 
+
+      
+
       .project {
         height: 300px;
         border: 1px solid black;
@@ -27,28 +30,31 @@
         padding: 1rem;
       }
 
+      .projects{
+        display: grid;
+        gap: 1rem;
+        grid-template-columns: 1fr 
+      }
+
       @media(min-width:768px){
         .projects{
-          gap:1rem;
-          display: flex;
-          flex-wrap: wrap; /*  */
-        }
-        .project{
-          width: 50%;
+          grid-template-columns: 1fr 1fr ;
         }
       }
 
       @media(min-width:1024px){
-        .project{
-          width: 33.33%;
+        .projects{
+          grid-template-columns: 1fr 1fr 1fr ;
         }
       }
 
       @media(min-width:1200px){
-        .project{
-          width: 22%
+        .projects{
+          grid-template-columns: 1fr 1fr 1fr 1fr ;
+          grid-template-columns: repeat(4,1fr)
         }
       }
+      
     </style>
   </head>
   <body>
