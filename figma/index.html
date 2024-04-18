@@ -14,31 +14,40 @@
     <link rel="stylesheet" href="./home.css" />
   </head>
   <body>
-    <header class="container">
-      <nav>
-        <div class="logo-wrapper">
-            <img src="./assets/logo.svg" />
-            <span>Lasles VPN</span>
+    <header class="container header">
+      <nav class="header__nav">
+        <div class="logo-wrapper header__logo-wrapper">
+          <img src="./assets/logo.svg" class="header__logo" />
+          <p class="header__logo-text">
+            Lasles<span class="text--bold">VPN</span>
+          </p>
         </div>
-
         [[]]
-        <div class="nav-links">
+        <div class="header__sidebar">
+          <div class="header__nav-links">
             <a href="#">about</a>
             <a href="#">contact</a>
             <a href="#">testimonials</a>
             <a href="#">members</a>
-        </div>
-        <div>
-            <a href="">signIN</a>
-            <a href="">signUP</a>
+          </div>
+          <div>
+            <a href="" class="btn btn--transparent btn--rounded">signIN</a>
+            <a href="" class="btn btn--outline btn--rounded">signUP</a>
+          </div>
         </div>
       </nav>
     </header>
 
-    <section class="container">
-        banner...
+    <section class="container banner">
+      <p class="banner__heading">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+        <span class="text--bold">Lasles VPN</span>
+      </p>
+      <p class="banner__description">
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aliquam minus
+        at voluptatem officia qui repellendus!
+      </p>
+      <button class="btn banner__btn--mt-50">Click Me</button>
     </section>
-
-
   </body>
 </html>
