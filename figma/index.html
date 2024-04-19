@@ -22,15 +22,16 @@
             Lasles<span class="text--bold">VPN</span>
           </p>
         </div>
-        [[]]
-        <div class="header__sidebar">
+        <span onclick="showSidebar()" class="header__hamburger">[[]]</span>
+        <div id="sidebar" class="header__sidebar">
+          <button class="sidebar__close" onclick="closeSidebar()">close</button>
           <div class="header__nav-links">
             <a href="#">about</a>
             <a href="#">contact</a>
             <a href="#">testimonials</a>
             <a href="#">members</a>
           </div>
-          <div>
+          <div class="header__auths">
             <a href="" class="btn btn--transparent btn--rounded">signIN</a>
             <a href="" class="btn btn--outline btn--rounded">signUP</a>
           </div>
@@ -49,5 +50,15 @@
       </p>
       <button class="btn banner__btn--mt-50">Click Me</button>
     </section>
+    <script>
+      function showSidebar() {
+        // document.getElementById("sidebar").style.display = "flex"
+        document.getElementById("sidebar").classList.add("active");
+      }
+      function closeSidebar() {
+        // document.getElementById("sidebar").style.display = "flex"
+        document.getElementById("sidebar").classList.remove("active");
+      }
+    </script>
   </body>
 </html>
