@@ -1,6 +1,6 @@
 const fs = require("fs");
 const path = require("path");
-const http = require("http"); // used by express 
+const http = require("http"); // used by express
 
 /* third party */
 const bcrypt = require("bcrypt"); // npm install bcrypt
@@ -19,10 +19,13 @@ const bcrypt = require("bcrypt"); // npm install bcrypt
     - core module
         - fs
         - path
-        - http (api)
+        - http (api) // used by express 
 
     - local module
     - thrid party module
+      - bcyrpt // hasing module
+      - axios
+      
 
       
 */
@@ -36,21 +39,34 @@ console.log(path.resolve());
 /*  */
 let DB = []; // mondob
 
-function signup(email, myPlaintextPassword) {
+async function signup(email, myPlaintextPassword) {
   let saltRounds = 10;
-  bcrypt.hash(myPlaintextPassword, saltRounds, function (err, hash) {
+
+  /* asynchronous */
+  /*  bcrypt.hash(myPlaintextPassword, saltRounds, function (err, hash) {
     let user = {
       email,
       password: hash,
     };
     DB.push(user);
     console.log(user);
-  });
+  }); */
+
+  let hashedPw = await bcrypt.hash(myPlaintextPassword, saltRounds);
+  let user = {
+    email,
+    password: hashedPw,
+  };
+
+  DB.push(user);
 }
 
-signup("ram@gmail.com", "12345678");
-signup("shyam@gmail.com", "password");
+async function auth() {
+  await signup("ram@gmail.com", "12345678");
+  await signup("shyam@gmail.com", "password");
+  console.log({ DB: DB });
+}
 
-
+auth()
 
 /* async await  */
