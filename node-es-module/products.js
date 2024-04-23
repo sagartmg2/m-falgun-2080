@@ -23,9 +23,18 @@ function getProduct() {
 
 
 /* named export */
-module.exports = {
+// module.exports = {
+//   "getProduct": getProduct,
+//   createProduct,
+//   editProduct,
+//   deleteProduct,
+// }
+
+const productFunctions = {
   "getProduct": getProduct,
   createProduct,
   editProduct,
   deleteProduct,
 }
+/* default export */
+export default productFunctions 
