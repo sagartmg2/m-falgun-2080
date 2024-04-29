@@ -1,12 +1,14 @@
 /* Component */
-function Product(props) {  
+// function Product(props) {   // props {data: { title:"",rating:"" }}
+function Product({ data }) { // object destructuring
+  let { thumbnail, title, rating, price } = data;
   return (
     <div className="product">
-      <img src={props.data.thumbnail} />
+      <img src={thumbnail} />
       <p>
-        {props.data.title} ( {props.data.rating} ){" "}
+        {title} ( {rating} ){" "}
       </p>
-      <p>${props.data.price}</p>
+      <p>${price}</p>
     </div>
   );
 }
