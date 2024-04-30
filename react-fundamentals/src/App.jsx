@@ -2,6 +2,7 @@ import LatestProducts from "./LatestProducts";
 import TrendingProducts from "./TrendingProducts";
 import Todos from "./Todos";
 import Counter from "./Counter"
+import CounterNew from "./CounterNew";
 
 let title = " React state.";
 
@@ -11,7 +12,8 @@ export default function App() {
       <h1>{title}</h1>
       {/* <TrendingProducts /> */}
       {/* <LatestProducts /> */}
-      <Counter/>
+      {/* <Counter/> */}
+      {/* <CounterNew/> */}
       <Todos />
 
       {/* theme change: light /dark */}
