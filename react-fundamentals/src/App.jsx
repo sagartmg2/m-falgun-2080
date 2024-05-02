@@ -7,9 +7,10 @@ import CounterNew from "./CounterNew";
 let title = " React state.";
 
 export default function App() {
+ 
   return (
     <>
-      <h1>{title}</h1>
+      <h1 style={{textAlign:"center"}}>{title}</h1>
       {/* <TrendingProducts /> */}
       {/* <LatestProducts /> */}
       {/* <Counter/> */}
