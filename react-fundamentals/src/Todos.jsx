@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 export default function Todos() {
-  // const [todosData, setTodosData] = useState(["html", "css"]);
+  const [newInput, setNewInput] = useState("");
   const [todosData, setTodosData] = useState([
     {
       title: "html",
@@ -9,11 +9,13 @@ export default function Todos() {
     },
     {
       title: "css",
+      status: true,
+    },
+    {
+      title: "js",
       status: false,
     },
   ]);
-  // const [firstSTatus, setfirstSTatus] = useState(false)
-  // const [firstSTatus, setfirstSTatus] = useState()
 
   function addNewTodo(e) {
     e.preventDefault();
@@ -30,35 +32,85 @@ export default function Todos() {
       status: false,
       title: e.target.title.value,
     });
+
     // console.log(temp);
     // setTodosData( ["html","css","js"])
     setTodosData(temp);
     e.target.title.value = "";
   }
 
-  function deleteTodo(index) {
-    console.log("delete ...", index);
+  function deleteTodo(deleteableIndex) {
+    console.log("delete ...", deleteableIndex);
     let temp = [...todosData];
     /* build your logic to delete respecive index from todosData array */
-    temp = [{ title: "css", status: false }];
+
+    // temp.splice(index,1)
+
+    /* 
+    temp = temp.filter((el, idx) => {
+      if (index == idx) {
+        return false;
+      }
+      return true;
+    }); */
+
+    /*
+      temp = temp.filter((el, idx) => {
+        if (deleteableIndex != idx) {
+          return true;
+        }
+      });
+     */
+
+    temp = temp.filter((el, idx) => deleteableIndex !== idx);
     setTodosData(temp);
   }
 
+  // function changeInputFieldValue(e){
+  //   setNewInput(e.target.value)
+  // }
+
+  function toggleStatus(index) {
+    let temp = [...todosData];
+    temp[index].status = !temp[index].status;
+    setTodosData(temp);
+  }
+  
   return (
     <div>
       <h2>Todos List</h2>
       <form onSubmit={addNewTodo}>
-        <input required name="title" type="text" />
+        {/* <input value={newInput} onChange={changeInputFieldValue} required name="title" type="text" /> */}
+        <input
+          value={newInput}
+          onChange={(e) => {
+            setNewInput(e.target.value);
+          }}
+          required
+          name="title"
+          type="text"
+        />
         <button>add</button>
       </form>
       <br />
+
       {JSON.stringify(todosData)}
-      {/* <ul style="list-style:none;"> */}
+
       <ul style={{ listStyle: "none" }}>
         {todosData.map((el, index) => {
           return (
             <li key={index}>
-              <input type="checkbox" /> <span className="">{el.title}</span>
+              <input
+                checked={el.status}
+                onChange={(e) => {
+                  // console.log(e.target.checked);
+                  toggleStatus(index);
+                }}
+                type="checkbox"
+              />
+              {/* <span className={ "line-through"} >{el.title}</span> */}
+              <span className={el.status ? "line-through" :"" } >{el.title}</span>
+              {/* <span className={`${el.status? "line-through" : "" }  other-class1 other-class-2   `}>{el.title}</span> */}
               <button
                 type="button"
                 onClick={() => {

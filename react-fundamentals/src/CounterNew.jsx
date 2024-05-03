@@ -6,7 +6,10 @@ export default function CounterNew() {
 
   const increment = () => {
     console.log("increment");
-    setCountValue(countValue + 1);
+    // setCountValue(countValue + 1);
+    setCountValue((prev) =>{
+      return prev + 1
+    });
   };
 
   const decrement = () => {
