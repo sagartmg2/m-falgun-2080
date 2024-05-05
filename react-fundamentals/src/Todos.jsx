@@ -28,11 +28,14 @@ export default function Todos() {
     */
 
     let temp = [...todosData]; // spread opertor
+    let newData = e.target.title.value
+    /* check if newData already exists in todosData[] */
     temp.push({
       status: false,
-      title: e.target.title.value,
+      title: newData
     });
 
+     
     // console.log(temp);
     // setTodosData( ["html","css","js"])
     setTodosData(temp);

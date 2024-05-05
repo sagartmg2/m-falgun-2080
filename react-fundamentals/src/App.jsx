@@ -3,8 +3,9 @@ import TrendingProducts from "./TrendingProducts";
 import Todos from "./Todos";
 import Counter from "./Counter"
 import CounterNew from "./CounterNew";
+import ProductsApi from "./ProductsApi";
 
-let title = " React state.";
+let title = " link API.";
 
 export default function App() {
  
@@ -15,7 +16,8 @@ export default function App() {
       {/* <LatestProducts /> */}
       {/* <Counter/> */}
       {/* <CounterNew/> */}
-      <Todos />
+      {/* <Todos /> */}
+      <ProductsApi/>
 
       {/* theme change: light /dark */}
 
