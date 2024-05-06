@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 export default function ProductsApi() {
+  console.log("re-render");
+  const [isLoading, setisLoading] = useState(false);
+  const [products, setProducts] = useState([]);
+
   /*
      CRUD operatons
         create
@@ -30,25 +34,54 @@ export default function ProductsApi() {
                 500 503
     */
 
-  function fetchApiData() {
-    // fetch("https://dummyjson.com/products")
-    //   .then((res) => res.json())
-    //   .then((data) =>{
-    //     console.log(data)
-    //   });
-    axios.get("https://dummyjson.com/products")
-    .then((res) =>{
-        console.log(res.data.products)
-    })
+  async function fetchApiData() {
+    /* fetch("https://dummyjson.com/products")
+      .then((res) => res.json())
+      .then((data) =>{
+        console.log(data)
+      }); */
 
+    setisLoading(true);
 
+    axios
+      .get("https://dummyjson.com/produc")
+      .then((res) => {
+        console.log(res.data.products);
+        setProducts(res.data.products);
+        setisLoading(false);
+      })
+      .catch((err) => {
+        setisLoading(false);
+        alert("somethig went wrong. please try again later.");
+      });
+
+    /* let productsRes = await axios.get("https://dummyjson.com/products/search?q=");
+    let productsData = productsRes.data.products;
+    setProducts(productsData);
+    setisLoading(false); */
   }
+
+  // fetchApiData() // we cant call it directly else infinite rerender
+
+  useEffect(() => {
+    console.log("use effect");
+    fetchApiData();
+  }, []); // empty dependency: component mount
 
   return (
     <>
-      <button onClick={fetchApiData}>fetch products</button>
       <ul>
-      
+        <li>Component did mount</li>
+        <li>Component did update</li>
+        <li>Component did unmount</li>
+      </ul>
+      <input type="text" />
+      {/* <button onClick={fetchApiData}>fetch products</button> */}
+      {isLoading && <p>is Loading...</p>}
+      <ul>
+        {products.map((el) => {
+          return <li key={el.id}>{el.title}</li>;
+        })}
       </ul>
     </>
   );

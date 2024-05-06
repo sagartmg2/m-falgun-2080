@@ -22,10 +22,12 @@ export default function Counter() {
   
   */ 
 
+
   function increment() {
     // count++;
     setCount(count+1);
   }
+
 
   return (
     <div>
