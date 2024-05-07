@@ -5,6 +5,7 @@ import Counter from "./Counter"
 import CounterNew from "./CounterNew";
 import ProductsApi from "./ProductsApi";
 import Login from "./Login";
+import ProductSearch from "./ProductSearch";
 
 let title = " copmponent lifecyles";
 
@@ -18,7 +19,8 @@ export default function App() {
       {/* <Counter/> */}
       {/* <CounterNew/> */}
       {/* <Todos /> */}
-      <ProductsApi/>
+      {/* <ProductsApi/> */}
+      <ProductSearch/>
       {/* <Login/> */}
       {/* theme change: light /dark */}
 

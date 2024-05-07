@@ -22,3 +22,12 @@ img{
 .line-through{
   text-decoration: line-through;
 }
+
+.alert-box{
+  margin: 1rem 0;
+  background-color: rgba(255, 0, 0, 0.5);
+  color:white;
+  display: block;
+  padding: .5rem 1rem;
+  width: max-content;
+}

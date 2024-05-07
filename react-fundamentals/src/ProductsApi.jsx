@@ -5,6 +5,7 @@ export default function ProductsApi() {
   console.log("re-render");
   const [isLoading, setisLoading] = useState(false);
   const [products, setProducts] = useState([]);
+  const [error, setError] = useState("");
 
   /*
      CRUD operatons
@@ -42,9 +43,10 @@ export default function ProductsApi() {
       }); */
 
     setisLoading(true);
+    setError("");
 
     axios
-      .get("https://dummyjson.com/produc")
+      .get("https://dummyjson.com/products")
       .then((res) => {
         console.log(res.data.products);
         setProducts(res.data.products);
@@ -52,13 +54,9 @@ export default function ProductsApi() {
       })
       .catch((err) => {
         setisLoading(false);
-        alert("somethig went wrong. please try again later.");
+        setError("somethig went wrong. please try again later.");
+        // alert("");
       });
-
-    /* let productsRes = await axios.get("https://dummyjson.com/products/search?q=");
-    let productsData = productsRes.data.products;
-    setProducts(productsData);
-    setisLoading(false); */
   }
 
   // fetchApiData() // we cant call it directly else infinite rerender
@@ -66,7 +64,15 @@ export default function ProductsApi() {
   useEffect(() => {
     console.log("use effect");
     fetchApiData();
-  }, []); // empty dependency: component mount
+    // empty dependency: component mount
+  }, []);
+
+  console.log(products);
+
+  if(error){
+    return <div className="alert-box">{error}</div>
+  }
+
 
   return (
     <>
@@ -76,8 +82,9 @@ export default function ProductsApi() {
         <li>Component did unmount</li>
       </ul>
       <input type="text" />
-      {/* <button onClick={fetchApiData}>fetch products</button> */}
+      <button onClick={fetchApiData}>fetch products</button>
       {isLoading && <p>is Loading...</p>}
+      {error && <div className="alert-box">{error}</div>}
       <ul>
         {products.map((el) => {
           return <li key={el.id}>{el.title}</li>;
