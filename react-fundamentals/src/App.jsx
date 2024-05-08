@@ -6,13 +6,15 @@ import CounterNew from "./CounterNew";
 import ProductsApi from "./ProductsApi";
 import Login from "./Login";
 import ProductSearch from "./ProductSearch";
+import GoogleTabs from "./GoogleTabs";
+import ChangeTheme from "./ChangeTheme";
 
-let title = " copmponent lifecyles";
+let title = "";
 
 export default function App() {
  
   return (
-    <>
+    <div >
       <h1 style={{textAlign:"center"}}>{title}</h1>
       {/* <TrendingProducts /> */}
       {/* <LatestProducts /> */}
@@ -20,10 +22,12 @@ export default function App() {
       {/* <CounterNew/> */}
       {/* <Todos /> */}
       {/* <ProductsApi/> */}
-      <ProductSearch/>
+      {/* <ProductSearch/> */}
+      <GoogleTabs/>
+      <ChangeTheme/>
       {/* <Login/> */}
       {/* theme change: light /dark */}
 
-    </>
+    </div>
   );
 }

@@ -31,3 +31,9 @@ img{
   padding: .5rem 1rem;
   width: max-content;
 }
+
+
+.dark{
+  background-color: #333;
+  color:whitesmoke;
+}

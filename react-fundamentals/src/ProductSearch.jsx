@@ -7,7 +7,7 @@ export default function ProductSearch() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    fetchProducts()
+    fetchProducts();
   }
 
   function fetchProducts() {
@@ -36,6 +36,16 @@ export default function ProductSearch() {
         />
         <button>search</button>
       </form>
+      found porducts: {products.length}
+
+      {
+        products.length == 0
+          && 
+          <p>
+            <b>no products found </b>
+          </p>
+      }
+
       <ul>
         {products.map((el) => {
           return <li key={el.id}>{el.title}</li>;
