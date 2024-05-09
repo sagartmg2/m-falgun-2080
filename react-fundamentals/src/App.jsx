@@ -8,13 +8,15 @@ import Login from "./Login";
 import ProductSearch from "./ProductSearch";
 import GoogleTabs from "./GoogleTabs";
 import ChangeTheme from "./ChangeTheme";
+import Header from "./Header";
 
-let title = "";
+let title = "conditional rendering";
+
 
 export default function App() {
- 
   return (
-    <div >
+    <div>
+      <Header/>
       <h1 style={{textAlign:"center"}}>{title}</h1>
       {/* <TrendingProducts /> */}
       {/* <LatestProducts /> */}
@@ -24,7 +26,7 @@ export default function App() {
       {/* <ProductsApi/> */}
       {/* <ProductSearch/> */}
       <GoogleTabs/>
-      <ChangeTheme/>
+      {/* <ChangeTheme/> */}
       {/* <Login/> */}
       {/* theme change: light /dark */}
 

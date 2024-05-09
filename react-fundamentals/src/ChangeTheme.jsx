@@ -1,10 +1,23 @@
-import React from "react";
+import React,{useState} from "react";
 
 export default function ChangeTheme() {
-  return (
-    <div className="dark">
-      <button>dark theme</button>
-      <button>light theme</button>
+  const [currentTheme, setCurrentTheme] = useState("light")
+
+  return(
+    <div className={currentTheme == "dark" ? "dark" : ""}>
+      {
+        currentTheme =='dark'
+        ?
+        <button type="button" onClick={() =>{
+          setCurrentTheme("light")
+        }}>light theme</button>
+        :
+        <button type="button" onClick={() =>{
+          setCurrentTheme("dark")
+        }}>dark theme</button>
+      }
+
+     
 
       <hr />
       <p>
