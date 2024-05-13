@@ -12,43 +12,36 @@ const express = require("express") //  () =>{  return { get:() =>{}, post:() =>{
 const app = express()
 
 /* middleware
-    - function which can acess req and response. and also next upcomming valid middleware
+    - function which can acess req and response. 
 */
 
-let isLoggedIn = true
+let isLoggedIn = false
 
-function checkAuthentication(req, res, next) {
-  if (isLoggedIn) {
-    // req.body = {"title":"custom"}
-    next()
-  } else {
-    console.log("checking authenticateion")
-    res.status(401).send("unauthenticated")
-  }
-}
+function checkAuthentication(req, res) {}
 
-/* 
-checkAuthentication() // x x we should not call it directly
- */
-
-app.use(checkAuthentication) // global middleware // runs prior to every request
-app.use(express.json()) // express.json = () =>{ return (req,res,next) =>{ req.body  - postman body }  }
-
+checkAuthentication()
 
 let dbTodos = ["html", "js", "react", "express"]
+
+app.get("/", function (req, res) {
+  res.send("Hello World ")
+})
 
 /* CRUD CREATE READ UPDATE DELETE */
 /* GET POST PUT DELETE */
 
 app.get("/api/todos", function (req, res) {
-  console.log("send todos.")
   res.send(dbTodos)
 })
 
 app.post("/api/todos", function (req, res) {
+  if (isLoggedIn) {
     console.log("req.body", req.body)
     dbTodos.push("mongodb")
     res.send("todos created.")
+  } else {
+    res.status(401).send("unauthenticated")
+  }
 })
 
 app.get("/api/products", function (req, res) {
