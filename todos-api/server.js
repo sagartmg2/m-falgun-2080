@@ -12,18 +12,29 @@ const express = require("express") //  () =>{  return { get:() =>{}, post:() =>{
 const app = express()
 
 /* middleware
+    - inceptor of requests. 
     - function which can acess req and response. and also next upcomming valid middleware
 */
 
 let isLoggedIn = true
+let role = "buyer"
+// let role = "seller"
 
 function checkAuthentication(req, res, next) {
   if (isLoggedIn) {
-    // req.body = {"title":"custom"}
+    console.log("login passed.")
     next()
   } else {
-    console.log("checking authenticateion")
-    res.status(401).send("unauthenticated")
+    res.status(401).send("unauthenticated.")
+  }
+}
+
+function checkSellerRole(req, res, next) {
+  console.log("check role")
+  if (role === "seller") {
+    next()
+  } else {
+    res.status(403).send("access forbidden")
   }
 }
 
@@ -31,11 +42,26 @@ function checkAuthentication(req, res, next) {
 checkAuthentication() // x x we should not call it directly
  */
 
-app.use(checkAuthentication) // global middleware // runs prior to every request
+/* expres.json as global middleware. cause we might need request data for every request */
 app.use(express.json()) // express.json = () =>{ return (req,res,next) =>{ req.body  - postman body }  }
 
+// app.use(checkAuthentication)
+// app.use(checkSellerRole)
 
-let dbTodos = ["html", "js", "react", "express"]
+let dbTodos = [
+  {
+    id: 1,
+    title: "html",
+  },
+  {
+    id: 2,
+    title: "css",
+  },
+  {
+    id: 3,
+    title: "js",
+  },
+]
 
 /* CRUD CREATE READ UPDATE DELETE */
 /* GET POST PUT DELETE */
@@ -45,27 +71,30 @@ app.get("/api/todos", function (req, res) {
   res.send(dbTodos)
 })
 
-app.post("/api/todos", function (req, res) {
-    console.log("req.body", req.body)
-    dbTodos.push("mongodb")
-    res.send("todos created.")
+app.post("/api/todos", checkAuthentication, function (req, res) {
+  console.log("req.body", req.body)
+  dbTodos.push(req.body.title)
+  res.send("todos created.")
+})
+
+app.put("/api/todos/:id", (req, res) => {
+  console.log(req.params);
+  /* TODO: update above dbTodos data  */
+  res.send("updated..")
+})
+
+app.delete("/api/todos/:id", (req, res) => {
+  res.send("deleted...")
 })
 
 app.get("/api/products", function (req, res) {
   res.send("list of products")
 })
-app.post("/api/products", function (req, res) {
-  if (isLoggedIn) {
-    res.send("products created.")
-  } else {
-    res.status(401).send("unauthenticated")
-  }
-})
 
-app.post("/api/todos", function (req, res) {
+/* route level middleware */
+app.post("/api/products", checkAuthentication, checkSellerRole, function (req, res) {
   console.log("req.body", req.body)
-  dbTodos.push("mongodb")
-  res.send("data created.")
+  res.send("products created.")
 })
 
 app.listen(8000, () => {
