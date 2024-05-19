@@ -29,6 +29,7 @@ db.todos.insertMany([
 ])
 
 db.todos.find()
+db.todos.insertOne()
 
 db.students.find()
 // db.students.find(<filter options>)
