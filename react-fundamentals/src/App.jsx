@@ -1,6 +1,6 @@
 import LatestProducts from "./LatestProducts";
 import TrendingProducts from "./TrendingProducts";
-import Todos from "./Todos";
+import Todos from "./pages/Todos";
 import Counter from "./Counter";
 import CounterNew from "./CounterNew";
 import ProductsApi from "./ProductsApi";
@@ -31,6 +31,7 @@ export default function App() {
       path: "",
       element: (
         <>
+          route component
           <Header theme={theme} setTheme={setTheme} />
           <Outlet />
         </>
@@ -38,22 +39,22 @@ export default function App() {
       children: [
         {
           path: "/",
-          element:<Home/>
+          element: <Home />,
         },
         {
           path: "about",
-          element: <About/>
+          element: <About />,
+        },
+        {
+          path: "todos",
+          element: <Todos/>,
         },
         {
           path: "products",
           children: [
             {
               path: "",
-              element: (
-                <div>
-                  <h1>Products</h1>
-                </div>
-              ),
+              element: <ProductsApi />,
             },
             {
               path: "watch",

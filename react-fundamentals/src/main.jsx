@@ -2,10 +2,15 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 
 import "./main.css";
-import App from "./App";
+import TodoCRUD from "./TodoCRUD";
 
-{/* <React.StrictMode> */}
-ReactDOM.createRoot(document.getElementById("root")).render(
-    <App />
-);
-  {/* </React.StrictMode> */}
+{
+  /* <React.StrictMode> */
+}
+// <App />
+
+ReactDOM.createRoot(document.getElementById("root")).render(<TodoCRUD />);
+
+{
+  /* </React.StrictMode> */
+}
