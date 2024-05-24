@@ -1,5 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { CiEdit } from "react-icons/ci";
+import EditModal from "./EditModal";
 
 /* 
   status codes
@@ -15,6 +17,7 @@ export default function TodoCRUD() {
   const [todos, setTodos] = useState([]);
   const [isSubmitting, setisSubmitting] = useState(false);
   const [error, setError] = useState("");
+  const [todoToBeUpdated, setTodoToBeUpdated] = useState(null);
   /* rendering */
 
   function fetchTodos() {
@@ -55,7 +58,8 @@ export default function TodoCRUD() {
                   "msg": "Path `status` is required."
               }
           ]
-    */
+        */
+
         let errMsg = "";
 
         if (err.response.status == 400) {
@@ -74,12 +78,38 @@ export default function TodoCRUD() {
 
   function deleteTodo(_id) {
     axios
-      .delete(
-        `https://todo-api-dom.vercel.app/api/todos/`+_id
-      )
+      .delete(`https://todo-api-dom.vercel.app/api/todos/` + _id)
       .then((res) => {
         fetchTodos();
       });
+  }
+
+  function toggleStatus(todo) {
+    axios
+      .put(`https://todo-api-dom.vercel.app/api/todos/` + todo._id, {
+        title: todo.title,
+        status: !todo.status,
+      })
+      .then((res) => {
+        fetchTodos();
+      })
+      .catch((err) => {
+        if (err.response.status == 400) {
+          err.response.data.errors.forEach((el) => {
+            errMsg = errMsg + el.msg;
+          });
+        } else if (err.response.status == 500) {
+          errMsg = "SErver error";
+        } else {
+          errMsg = "something went wrong please try again later.";
+        }
+        setError(errMsg);
+      });
+  }
+
+  function editTodo(todo) {
+    // alert("")
+    setTodoToBeUpdated(todo);
   }
 
   return (
@@ -96,7 +126,16 @@ export default function TodoCRUD() {
         {todos.map((el) => {
           return (
             <li key={el._id}>
-              {el.title}{" "}
+              <input
+                onChange={() => {
+                  toggleStatus(el);
+                }}
+                type="checkbox"
+                checked={el.status ? true : false}
+              />
+              <span className={el.status ? "line-through" : ""}>
+                {el.title}
+              </span>
               <button
                 onClick={() => {
                   deleteTodo(el._id);
@@ -104,12 +143,20 @@ export default function TodoCRUD() {
               >
                 delete
               </button>{" "}
+              <CiEdit
+                onClick={() => {
+                  editTodo(el);
+                }}
+              />
             </li>
           );
         })}
       </ul>
+      <EditModal
+        fetchTodos={fetchTodos}
+        setTodoToBeUpdated={setTodoToBeUpdated}
+        todo={todoToBeUpdated}
+      />
     </>
   );
 }
-
-
