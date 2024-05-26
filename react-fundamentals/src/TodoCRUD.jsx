@@ -30,7 +30,7 @@ export default function TodoCRUD() {
 
   useEffect(() => {
     fetchTodos();
-  }, []);
+  },[]);
 
   function createNewTodo(e) {
     setError("");

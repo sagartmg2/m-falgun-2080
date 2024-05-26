@@ -2,13 +2,24 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 
 export default function EditModal(props) {
-  let todo = props.todo;
+  console.log("render edit modal");
+  let todo = props.todo; // { }
 
-  const [titleField, settitleField] = useState(todo?.title); // optional chaining
+  const [titleField, settitleField] = useState(todo?.title || ""); // optional chaining
 
+  console.log({ titleField });
+
+  /* useEffect
+      - componet did mount
+      - component did update
+  */
+ 
   useEffect(() => {
-    settitleField(props.todo?.title);
-  }, [props.todo?.title]);
+    console.log("use effect of children component");
+    settitleField(todo?.title || "");
+  }, [todo?._id]);
+
+  console.log({ todo });
 
   if (!todo) {
     return null;
