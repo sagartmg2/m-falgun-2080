@@ -1,5 +1,8 @@
 const express = require("express")
 const app = express()
+var cors = require('cors')
+app.use(cors())
+
 
 const mongoose = require("mongoose")
 const Schema = mongoose.Schema
