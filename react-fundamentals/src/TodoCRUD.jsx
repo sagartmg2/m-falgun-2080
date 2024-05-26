@@ -23,11 +23,10 @@ export default function TodoCRUD() {
   function fetchTodos() {
     axios.get("http://localhost:8000/api/todos").then((res) => {
       console.log(res);
-      console.log(res.data.data);
-      setTodos(res.data.data);
+      console.log(res.data);
+      setTodos(res.data);
     });
   }
-
   useEffect(() => {
     fetchTodos();
   },[]);
@@ -37,7 +36,7 @@ export default function TodoCRUD() {
     setisSubmitting(true);
     e.preventDefault();
     axios
-      .post("https://todo-api-dom.vercel.app/api/todos", {
+      .post("http://localhost:8000/api/todos", {
         title: e.target.title.value,
       })
       .then((res) => {
