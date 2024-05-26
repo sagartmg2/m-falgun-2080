@@ -21,7 +21,7 @@ export default function TodoCRUD() {
   /* rendering */
 
   function fetchTodos() {
-    axios.get("https://todo-api-dom.vercel.app/api/todos").then((res) => {
+    axios.get("http://localhost:8000/api/todos").then((res) => {
       console.log(res);
       console.log(res.data.data);
       setTodos(res.data.data);
